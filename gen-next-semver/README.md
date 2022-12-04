@@ -12,7 +12,7 @@
 
 ```sh
 cd YOUR_GIT_REPO_DIR
-curl -s https://raw.githubusercontent.com/khanh-ph/github-actions-scripts/master/gen-next-semver/gen-next-semver.sh | sudo bash
+curl -s https://raw.githubusercontent.com/khanh-ph/github-actions-scripts/master/gen-next-semver/gen-next-semver.sh | bash
 ```
 
 ##### GitHub Actions
@@ -39,7 +39,7 @@ jobs:
             env: 
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             run: |
-            VERSION=$(curl -s https://raw.githubusercontent.com/khanh-ph/github-actions-scripts/master/gen-next-semver/gen-next-semver.sh | sudo bash)
+            VERSION=$(curl -s https://raw.githubusercontent.com/khanh-ph/github-actions-scripts/master/gen-next-semver/gen-next-semver.sh | bash)
             echo VERSION=$VERSION >> $GITHUB_ENV
             echo BRANCH=release/$VERSION >> $GITHUB_ENV
 

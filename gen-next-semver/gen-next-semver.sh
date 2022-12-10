@@ -13,9 +13,9 @@ done
 [ -z "$labels" ] && { echo "There is no label found."; exit 1; }
 
 if [[ $labels == *"breaking-change"* ]]; then
-    nextReleaseTag=$(echo $currentReleaseTag | awk -F. '{ver = sprintf("%s.%s.%s", $1+1, $2, $3); print ver }')
+    nextReleaseTag=$(echo $currentReleaseTag | awk -F. '{ver = sprintf("%s.%s.%s", $1+1, 0, 0); print ver }')
 elif [[ $labels == *"feature"* ]]; then
-    nextReleaseTag=$(echo $currentReleaseTag | awk -F. '{ver = sprintf("%s.%s.%s", $1, $2+1, $3); print ver }')
+    nextReleaseTag=$(echo $currentReleaseTag | awk -F. '{ver = sprintf("%s.%s.%s", $1, $2+1, 0); print ver }')
 elif [[ $labels == *"bugfix"* ]]; then
     nextReleaseTag=$(echo $currentReleaseTag | awk -F. '{ver = sprintf("%s.%s.%s", $1, $2, $3+1); print ver }')
 fi

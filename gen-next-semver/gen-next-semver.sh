@@ -1,9 +1,14 @@
 #!/bin/bash
 lastGitTag=$(git describe --tags $(git rev-list --tags --max-count=1) 2>/dev/null) 
 currentReleaseTag=${lastGitTag:-"0.0.0"}
-unreleasePRs=$(git log ${lastGitTag:-}..HEAD --merges --oneline | sed "s/^.*pull request #//g;s/ from.*//g")
 nextReleaseTag=
 labels=
+
+if [ -z "$lastGitTag" ]; then
+    unreleasePRs=$(git log HEAD --merges --oneline | sed "s/^.*pull request #//g;s/ from.*//g")
+else
+    unreleasePRs=$(git log $lastGitTag..HEAD --merges --oneline | sed "s/^.*pull request #//g;s/ from.*//g")
+fi
 
 for id in $unreleasePRs
 do
